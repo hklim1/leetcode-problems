@@ -1,3 +1,6 @@
+# === TOTALS ===
+# EASY: 
+
 # PROBLEM 2331 EVALUATE BOOLEAN BINARY TREE (EASY) - JANUARY 31, 2024
 class Solution:
     def evaluateTree(self, root: Optional[TreeNode]) -> bool:
@@ -30,3 +33,56 @@ class Solution:
 
         if right > left:
             return 1 + right
+
+# PROBLEM 100: SAME TREE (EASY) - JANUARY 22, 2024
+class Solution:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        if p == None and q == None:
+            return True
+        if (p == None and q != None) or (p != None and q == None):
+            return False
+        if p.val != q.val:
+            return False
+
+        left = self.isSameTree(p.left, q.left)
+        right = self.isSameTree(p.right, q.right)
+
+        if left == True and right == True and p.val == q.val:
+            return True
+        else:
+            return False
+
+# PROBLEM 144: BINARY TREE PREORDER TRAVERSAL (EASY) - JANUARY 18, 2024
+class Solution:
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        answer_array = []
+        if root == None:
+            return answer_array
+        answer_array.append(root.val)
+        left_val = self.preorderTraversal(root.left)
+        right_val = self.preorderTraversal(root.right)
+        return answer_array + left_val + right_val
+
+# PROBLEM 145: BINARY TREE POSTORDER TRAVERSAL (EASY) - JANUARY 18, 2024
+class Solution:
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        answer_array = []
+        if root == None:
+            return answer_array
+        answer_array.append(root.val)
+        left_val = self.postorderTraversal(root.left)
+        right_val = self.postorderTraversal(root.right)
+        return left_val + right_val + answer_array
+
+# PROBLEM 94: BINARY TREE INORDER TRAVERSAL (EASY) - JANUARY 17, 2024
+class Solution:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        answer_array = []
+        if root == None:
+            return []
+        left = self.inorderTraversal(root.left)
+        right = self.inorderTraversal(root.right)
+        answer_array += left
+        answer_array.append(root.val)
+        answer_array += right
+        return answer_array
