@@ -1,5 +1,20 @@
 # === TOTALS ===
-# EASY: 
+# EASY: 7
+
+# PROBLEM 226 INVERT BINARY TREE (EASY) - FEBRUARY 5, 2024
+class Solution:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if root == None:
+            return None
+
+        left = self.invertTree(root.left)
+        right = self.invertTree(root.right)
+
+        old_left = root.left
+        root.left = root.right
+        root.right = old_left
+
+        return root
 
 # PROBLEM 2331 EVALUATE BOOLEAN BINARY TREE (EASY) - JANUARY 31, 2024
 class Solution:
